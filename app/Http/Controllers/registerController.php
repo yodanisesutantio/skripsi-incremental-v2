@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class registerController extends Controller
 {
@@ -34,6 +36,23 @@ class registerController extends Controller
 
         User::create($validatedData);
 
-        return redirect('/app-intro');
+        $credentials = $request->validate([
+            'username' => ['required'],
+            'password' => ['required']
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $role = $user->role;
+          
+            $request->session()->regenerate();
+            Session::flash('success', 'Pendaftaran Akun Berhasil!');
+          
+            return redirect()->intended('/' . $role . '-index');
+        }
+
+        return back()->withErrors([
+            'username' => 'Periksa kembali username anda',
+        ])->onlyInput('username');
     }
 }

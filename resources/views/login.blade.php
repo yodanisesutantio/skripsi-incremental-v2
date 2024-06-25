@@ -39,12 +39,13 @@
         </div>
     </form>
 
+    {{-- jQuery JS --}}
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
         function showHidePass() {
             const $showPass = $('#showPass');
             const $hidePass = $('#hidePass');
-            const $passwordInput = $('#password'); // Get the password input
+            const $passwordInput = $('#password');
 
             if ($passwordInput.attr('type') === "password") {
                 $showPass.css('display', 'block');
@@ -56,5 +57,13 @@
 
             $passwordInput.attr('type', $passwordInput.attr('type') === "password" ? "text" : "password");
         }
+
+        $("#username").on("keydown input", function(event) {
+            if (event.type === "keydown" && event.keyCode === 32) {
+                event.preventDefault();
+            } else if (event.type === "input") {
+                $(this).val($(this).val().replace(/\s/g, ""));
+            }
+        });
     </script>
 @endsection

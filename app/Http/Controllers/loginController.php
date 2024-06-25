@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class loginController extends Controller
 {
@@ -25,6 +26,8 @@ class loginController extends Controller
             $role = $user->role;
           
             $request->session()->regenerate();
+
+            Session::flash('success', 'Login Berhasil!');
           
             return redirect()->intended('/' . $role . '-index');
         }

@@ -13,10 +13,38 @@
     
     {{-- Swiper cdn --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    {{-- Toastr CDN --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     
     <title>{{ $pageName }} Kemudi</title>
 </head>
 <body class="lg:flex lg:flex-col justify-center h-screen bg-custom-white px-5 py-8 lg:px-[27rem]">
     @yield('content')
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+        @if(Session::has('success'))
+            toastr.success("{{ Session::get('success') }}");
+        @endif
+    </script>
 </body>
 </html>
