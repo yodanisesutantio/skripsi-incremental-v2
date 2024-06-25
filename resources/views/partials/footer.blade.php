@@ -41,9 +41,18 @@
                             <p class="font-league font-medium text-2xl">Hubungi Kami</p>
                         </a>
     
+                        @auth
                         <a href="sign-out" class="border-t border-l border-custom-dark/40 text-custom-destructive p-8 cursor-pointer hover:bg-custom-destructive hover:text-custom-white duration-300">
-                            <p class="font-league font-medium text-2xl">Log Out</p>
+                            <form action="/logout" method="post" class="mb-0">
+                                @csrf
+                                <button type="submit" class="font-league font-medium text-2xl">Log Out</button>
+                            </form>
                         </a>
+                        @else
+                        <a href="/login" class="border-t border-l border-custom-dark/40 text-custom-green p-8 cursor-pointer hover:bg-custom-green hover:text-custom-white duration-300">
+                            <p class="font-league font-medium text-2xl">Login</p>
+                        </a>
+                        @endauth
                     </div>
                 </div>
             </div>
