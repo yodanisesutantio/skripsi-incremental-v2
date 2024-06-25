@@ -72,12 +72,12 @@
                         </a>
     
                         @auth
-                        <a href="sign-out" class="border-t border-l border-custom-dark/40 text-custom-destructive p-8 cursor-pointer hover:bg-custom-destructive hover:text-custom-white duration-300">
-                            <form action="/logout" method="post" class="mb-0">
+                        <div class="border-t border-l border-custom-dark/40 text-custom-destructive p-8 cursor-pointer hover:bg-custom-destructive hover:text-custom-white duration-300" onclick="logoutConfirmation()">
+                            <button type="submit" class="font-league font-medium text-2xl">Log Out</button>
+                            <form action="/logout" method="post" class="mb-0 hidden">
                                 @csrf
-                                <button type="submit" class="font-league font-medium text-2xl">Log Out</button>
                             </form>
-                        </a>
+                        </div>
                         @else
                         <a href="/login" class="border-t border-l border-custom-dark/40 text-custom-green p-8 cursor-pointer hover:bg-custom-green hover:text-custom-white duration-300">
                             <p class="font-league font-medium text-2xl">Login</p>
