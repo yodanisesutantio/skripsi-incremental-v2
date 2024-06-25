@@ -13,4 +13,10 @@ class userController extends Controller
             "pageName" => "Beranda | ",
         ]);
     }
+
+    public function profile() {
+        return view('profile.user-profile', [
+            "pageName" => "Profil Anda | ",
+        ]);
+    }
 }

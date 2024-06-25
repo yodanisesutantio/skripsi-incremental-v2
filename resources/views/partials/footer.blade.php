@@ -20,17 +20,47 @@
             <div class="flex flex-col gap-5 w-1/2">
                 <div class="flex flex-row w-full">
                     <div class="flex flex-col w-1/2 border-b border-custom-dark/40">
-                        <a href="user-home" class="border-t border-l border-custom-dark/40 p-8 cursor-pointer hover:bg-custom-green hover:text-custom-white duration-300">
-                            <p class="font-league font-medium text-2xl">Beranda</p>
-                        </a>
+                        @auth
+                            @if (auth()->user()->role === 'user')
+                                <a href="user-index" class="border-t border-l border-custom-dark/40 p-8 cursor-pointer hover:bg-custom-green hover:text-custom-white duration-300">
+                                    <p class="font-league font-medium text-2xl">Beranda</p>
+                                </a>
+                            @elseif (auth()->user()->role === 'instructor')
+                                <a href="instructor-index" class="border-t border-l border-custom-dark/40 p-8 cursor-pointer hover:bg-custom-green hover:text-custom-white duration-300">
+                                    <p class="font-league font-medium text-2xl">Beranda</p>
+                                </a>
+                            @elseif (auth()->user()->role === 'admin')
+                                <a href="admin-index" class="border-t border-l border-custom-dark/40 p-8 cursor-pointer hover:bg-custom-green hover:text-custom-white duration-300">
+                                    <p class="font-league font-medium text-2xl">Beranda</p>
+                                </a>
+                            @endif
+                        @else
+                            <li class="p-3 text-custom-green font-bold lg:text-xl hover:bg-custom-dark/10 cursor-pointer nav-item"><a href="tamu">Beranda</a></li>
+                        @endauth
     
                         <a href="course-list" class="border-t border-l border-custom-dark/40 p-8 cursor-pointer hover:bg-custom-green hover:text-custom-white duration-300">
                             <p class="font-league font-medium text-2xl">Kursus</p>
                         </a>
-    
-                        <a href="user-profile" class="border-t border-l border-custom-dark/40 p-8 cursor-pointer hover:bg-custom-green hover:text-custom-white duration-300">
-                            <p class="font-league font-medium text-2xl">Profil</p>
-                        </a>
+
+                        @auth
+                            @if (auth()->user()->role === 'user')
+                                <a href="user-profile" class="border-t border-l border-custom-dark/40 p-8 cursor-pointer hover:bg-custom-green hover:text-custom-white duration-300">
+                                    <p class="font-league font-medium text-2xl">Profil</p>
+                                </a>
+                            @elseif (auth()->user()->role === 'instructor')
+                                <a href="instructor-profile" class="border-t border-l border-custom-dark/40 p-8 cursor-pointer hover:bg-custom-green hover:text-custom-white duration-300">
+                                    <p class="font-league font-medium text-2xl">Profil</p>
+                                </a>
+                            @elseif (auth()->user()->role === 'admin')
+                                <a href="admin-profile" class="border-t border-l border-custom-dark/40 p-8 cursor-pointer hover:bg-custom-green hover:text-custom-white duration-300">
+                                    <p class="font-league font-medium text-2xl">Profil</p>
+                                </a>
+                            @endif
+                        @else 
+                            <a href="tamu-profile" class="border-t border-l border-custom-dark/40 p-8 cursor-pointer hover:bg-custom-green hover:text-custom-white duration-300">
+                                <p class="font-league font-medium text-2xl">Profil</p>
+                            </a>
+                        @endauth
                     </div>
                     <div class="flex flex-col w-1/2 border-b border-custom-dark/40">
                         <a href="about-app" class="border-t border-l border-custom-dark/40 p-8 cursor-pointer hover:bg-custom-green hover:text-custom-white duration-300">

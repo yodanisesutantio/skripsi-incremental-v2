@@ -19,7 +19,17 @@
                             <li class="p-3 text-custom-green font-bold lg:text-xl hover:bg-custom-dark/10 cursor-pointer nav-item"><a href="tamu">Beranda</a></li>
                         @endauth
                         <li class="p-3 text-custom-green font-bold lg:text-xl hover:bg-custom-dark/10 cursor-pointer nav-item"><a href="course-list">Kursus</a></li>
-                        <li class="p-3 text-custom-green font-bold lg:text-xl hover:bg-custom-dark/10 cursor-pointer nav-item"><a href="user-profile">Profil</a></li>
+                        @auth
+                            @if (auth()->user()->role === 'user')
+                                <li class="p-3 text-custom-green font-bold lg:text-xl hover:bg-custom-dark/10 cursor-pointer nav-item"><a href="user-profile">Profil</a></li>
+                            @elseif (auth()->user()->role === 'instructor')
+                                <li class="p-3 text-custom-green font-bold lg:text-xl hover:bg-custom-dark/10 cursor-pointer nav-item"><a href="instructor-profile">Profil</a></li>
+                            @elseif (auth()->user()->role === 'admin')
+                                <li class="p-3 text-custom-green font-bold lg:text-xl hover:bg-custom-dark/10 cursor-pointer nav-item"><a href="admin-profile">Profil</a></li>
+                            @endif
+                        @else
+                            <li class="p-3 text-custom-green font-bold lg:text-xl hover:bg-custom-dark/10 cursor-pointer nav-item"><a href="/login">Beranda</a></li>
+                        @endauth
                         <li class="p-3 text-custom-green font-bold lg:text-xl"><a href=""><hr class="border-custom-grey border-opacity-35"></a></li>
                         @auth
                             <li class="lg:text-xl hover:bg-custom-dark/10 cursor-pointer nav-item">

@@ -25,19 +25,24 @@ class DatabaseSeeder extends Seeder
             'fullname' => 'General User',
             'username' => 'general_user',
             'password' => bcrypt('sayauser'),
-            'role' => "user"
+            'role' => "user",
+            'age' => 27,
+            'description' => 'Driven to achieve excellence in all that I do'
         ]);
         User::create([
             'fullname' => 'Instruktur',
             'username' => 'instruktur_kursus',
             'password' => bcrypt('sayainstruktur'),
-            'role' => "instructor"
+            'role' => "instructor",
+            'age' => 36,
+            'description' => 'Teaching 4Lyfe'
         ]);
         User::create([
             'fullname' => 'Pemilik / Admin',
             'username' => 'pemilik_kursus',
             'password' => bcrypt('sayapemilik'),
-            'role' => "admin"
+            'role' => "admin",
+            'description' => 'House of Surabaya Driving School'
         ]);
     }
 }
