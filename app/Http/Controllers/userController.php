@@ -19,4 +19,10 @@ class userController extends Controller
             "pageName" => "Profil Anda | ",
         ]);
     }
+
+    public function editProfile() {
+        return view('profile.edit-user-profile', [
+            "pageName" => "Ubah Profil Anda | ",
+        ]);
+    }
 }

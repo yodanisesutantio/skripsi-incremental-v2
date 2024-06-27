@@ -35,6 +35,7 @@ Route::post('/register', [registerController::class, 'store']);
 Route::middleware(['auth', 'App\Http\Middleware\userMiddleware'])->group(function () {
     Route::get('/user-index', [userController::class, 'index']);
     Route::get('/user-profile', [userController::class, 'profile']);
+    Route::get('/edit-user-profile', [userController::class, 'editProfile']);
 });
 
 Route::middleware(['auth', 'App\Http\Middleware\instructorMiddleware'])->group(function () {
