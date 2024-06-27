@@ -1,4 +1,4 @@
-<header class="z-50 bg-custom-white sticky top-0">
+<header class="z-30 bg-custom-white sticky top-0">
     <div class="flex flex-row pt-8 pb-3 px-5 lg:px-[4.25rem] mb-4 justify-between">
         <div class="burger" onclick="openNav()">
             {{-- SVG Burger --}}
