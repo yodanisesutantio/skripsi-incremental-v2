@@ -6,7 +6,7 @@
     {{-- Greetings Element --}}
     <div class="flex flex-col px-5 my-8">
         <p class="text-custom-grey font-league font-medium text-xl lg:text-2xl">Hi, {{ auth()->user()->fullname }}</p>
-        <h1 class="text-custom-dark font-league font-semibold text-2xl lg:text-4xl">Anda sedang tidak mengajar</h1>
+        <h1 class="text-custom-dark font-league font-semibold text-2xl lg:text-4xl">Belum ada kursus berlangsung</h1>
     </div>
 
     {{-- Ongoing Course, Hidden if there are no active course --}}

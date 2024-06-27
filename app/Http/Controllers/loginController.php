@@ -40,7 +40,7 @@ class loginController extends Controller
     }
 
     public function logout() {
-        request()->session()->flash('success', 'Logout Berhasil!');
+        // $message = 'Logout Berhasil!';
         Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();

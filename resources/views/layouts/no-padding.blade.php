@@ -43,6 +43,8 @@
         };
         @if(session()->has('success'))
             toastr.success("{{ session()->get('success') }}");
+        // @else
+        //     toastr.info("{{ session()->get('info') }}");
         @endif
     </script>
 </body>
