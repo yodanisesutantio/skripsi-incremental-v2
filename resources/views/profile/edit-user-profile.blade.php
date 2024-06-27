@@ -38,7 +38,7 @@
             {{-- Input Age --}}
             <div class="flex flex-col gap-1">
                 <label for="age" class="font-semibold font-league text-xl text-custom-grey">Usia</label>
-                <input type="number" min="17" max="99" name="age" id="age" placeholder="Nama Lengkap" class="p-4 font-league font-medium text-lg/[0] text-custom-secondary placeholder:#48484833 rounded-lg @error('age') border-2 border-custom-destructive @enderror" value="{{ auth()->user()->age }}">
+                <input type="number" min="17" max="99" name="age" id="age" placeholder="min: 17 tahun" class="p-4 font-league font-medium text-lg/[0] text-custom-secondary placeholder:#48484833 rounded-lg @error('age') border-2 border-custom-destructive @enderror" value="{{ auth()->user()->age }}">
                 @error('age')
                     <span class="text-custom-destructive">{{ $message }}</span>
                 @enderror
@@ -68,7 +68,7 @@
 
             {{-- Input Password --}}
             <div class="flex flex-col gap-1">
-                <label for="password" class="font-semibold font-league text-xl text-custom-grey">Password<span class="text-custom-destructive">*</span></label>
+                <label for="password" class="font-semibold font-league text-xl text-custom-grey">Ubah Password<span class="text-custom-destructive">*</span></label>
                 <div class="relative flex justify-end items-center">
                     <input type="password" name="password" id="password" placeholder="Password" class="relative py-4 pl-4 pr-10 w-full font-league font-medium text-lg/[0] text-custom-secondary placeholder:#48484833 rounded-lg @error('password') border-2 border-custom-destructive @enderror">
                     <div class="eyeIcon absolute mr-3" onclick="showHidePass()">
