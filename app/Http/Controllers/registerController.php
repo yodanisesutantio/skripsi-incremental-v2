@@ -19,6 +19,7 @@ class registerController extends Controller
         $validatedData = $request->validate([
             'fullname' => ['required', 'max:255'],
             'username' => ['required', 'min:3', 'max:255', 'unique:users'],
+            'phone_number' => ['required', 'min:10', 'max:20', 'unique:users'],
             'password' => ['required', 'min:5', 'max:255']
         ],[
             'fullname.required' => 'Kolom ini harus diisi',
@@ -27,12 +28,17 @@ class registerController extends Controller
             'username.min' => 'Username terlalu pendek',
             'username.max' => 'Username terlalu panjang',
             'username.unique' => 'Username sudah digunakan',
+            'phone_number.required' => 'Kolom ini harus diisi',
+            'phone_number.min' => 'Nomor terlalu pendek',
+            'phone_number.max' => 'Nomor terlalu panjang',
+            'phone_number.unique' => 'Nomor sudah terdaftar, gunakan nomor berbeda',
             'password.required' => 'Kolom ini harus diisi',
             'password.min' => 'Password minimal berisi 5 karakter',
             'password.max' => 'Password terlalu panjang',
         ]);
 
         $validatedData['password'] = bcrypt($validatedData['password']);
+        $validatedData['phone_number'] = preg_replace('/^(0|62)/', '+62', $validatedData['phone_number']);
 
         User::create($validatedData);
 

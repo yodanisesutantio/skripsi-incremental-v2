@@ -30,6 +30,13 @@
                 @enderror
             </div>
             <div class="flex flex-col gap-1">
+                <label for="phone_number" class="font-semibold font-league text-xl text-custom-grey">Nomor Whatsapp Aktif<span class="text-custom-destructive">*</span></label>
+                <input type="tel" name="phone_number" id="phone_number" placeholder="081818181818" class="w-full p-4 font-league text-lg/[0] text-custom-secondary placeholder:#48484833 rounded-lg @error('phone_number') border-2 border-custom-destructive @enderror" value="{{ old('phone_number') }}">
+                @error('phone_number')
+                    <span class="text-custom-destructive">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="flex flex-col gap-1">
                 <label for="password" class="font-semibold font-league text-xl text-custom-grey">Password<span class="text-custom-destructive">*</span></label>
                 <div class="relative flex justify-end items-center">
                     <input type="password" name="password" id="password" placeholder="Password" class="relative py-4 pl-4 pr-10 w-full font-league text-lg/[0] text-custom-secondary placeholder:#48484833 rounded-lg @error('password') border-2 border-custom-destructive @enderror">
@@ -55,6 +62,19 @@
     {{-- jQuery JS --}}
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
+        const phoneInputField = document.getElementById('phone_number');
+        
+        const intlTelInput = window.intlTelInput(phoneInputField, {
+            initialCountry: "ID", 
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"
+        });
+
+        phoneInputField.addEventListener('keypress', function(event) {
+                if (isNaN(event.key)) {
+                    event.preventDefault(); // Prevent non-numerical input
+                }
+            });
+
         function showHidePass() {
             const $showPass = $('#showPass');
             const $hidePass = $('#hidePass');

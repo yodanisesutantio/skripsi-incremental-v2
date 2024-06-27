@@ -18,12 +18,14 @@ class DatabaseSeeder extends Seeder
         User::create([
             'fullname' => 'Master Admin',
             'username' => 'master_kemudi',
+            'phone_number' => '999999999999',
             'password' => bcrypt('12345'),
             'role' => "sys_admin"
         ]);
         User::create([
             'fullname' => 'General User',
             'username' => 'general_user',
+            'phone_number' => '+6282145649388',
             'password' => bcrypt('sayauser'),
             'role' => "user",
             'age' => 27,
@@ -32,6 +34,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'fullname' => 'Instruktur',
             'username' => 'instruktur_kursus',
+            'phone_number' => '+6282145549388',
             'password' => bcrypt('sayainstruktur'),
             'role' => "instructor",
             'age' => 36,
@@ -40,6 +43,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'fullname' => 'Pemilik / Admin',
             'username' => 'pemilik_kursus',
+            'phone_number' => '+6282145749388',
             'password' => bcrypt('sayapemilik'),
             'role' => "admin",
             'description' => 'House of Surabaya Driving School'

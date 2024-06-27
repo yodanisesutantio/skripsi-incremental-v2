@@ -72,8 +72,8 @@
                 <p class="font-league text-lg/snug lg:text-xl/tight text-custom-dark mb-1 lg:mb-12">Anda yakin ingin melanjutkan proses Logout?</p>
             </div>
             <div class="flex flex-row justify-end gap-4 px-5 mt-4">                
-                <button type="button" id="closeModals" class="w-fit rounded text-left p-3 text-custom-dark font-semibold">Batal</button>
-                <button type="submit" id="yesLogout" class="w-fit rounded text-left p-3 bg-custom-destructive text-custom-white font-semibold">Ya, Log Out</button>
+                <button type="button" id="closeModals" class="w-fit rounded text-left p-3 text-custom-dark font-semibold hover:bg-custom-dark-hover/20">Batal</button>
+                <button type="submit" id="yesLogout" class="w-fit rounded text-left p-3 bg-custom-destructive hover:bg-[#EC2013] text-custom-white font-semibold">Ya, Log Out</button>
                 <form action="/logout" method="post" class="mb-1 hidden">
                     @csrf
                 </form>
