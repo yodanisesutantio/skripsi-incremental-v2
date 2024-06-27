@@ -17,7 +17,6 @@
     {{-- Toastr CDN --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    
     <title>{{ $pageName }} Kemudi</title>
 </head>
 <body class="bg-custom-white">    
@@ -44,8 +43,8 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         };
-        @if(Session::has('success'))
-            toastr.success("{{ Session::get('success') }}");
+        @if(session()->has('success'))
+            toastr.success("{{ session()->get('success') }}");
         @endif
     </script>
 </body>

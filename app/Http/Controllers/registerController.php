@@ -52,7 +52,7 @@ class registerController extends Controller
             $role = $user->role;
           
             $request->session()->regenerate();
-            Session::flash('success', 'Pendaftaran Akun Berhasil!');
+            $request->session()->flash('success', 'Pendaftaran Akun Berhasil!');
           
             return redirect()->intended('/' . $role . '-index');
         }

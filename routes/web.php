@@ -36,6 +36,7 @@ Route::middleware(['auth', 'App\Http\Middleware\userMiddleware'])->group(functio
     Route::get('/user-index', [userController::class, 'index']);
     Route::get('/user-profile', [userController::class, 'profile']);
     Route::get('/user-profile/edit', [userController::class, 'editProfile']);
+    Route::delete('/delete-account', [UserController::class, 'destroy'])->name('account.destroy');
 });
 
 Route::middleware(['auth', 'App\Http\Middleware\instructorMiddleware'])->group(function () {

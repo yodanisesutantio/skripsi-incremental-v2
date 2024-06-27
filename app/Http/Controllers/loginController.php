@@ -29,8 +29,7 @@ class loginController extends Controller
             $role = $user->role;
           
             $request->session()->regenerate();
-
-            Session::flash('success', 'Login Berhasil!');
+            $request->session()->flash('success', 'Login Berhasil');
           
             return redirect()->intended('/' . $role . '-index');
         }
@@ -41,6 +40,7 @@ class loginController extends Controller
     }
 
     public function logout() {
+        request()->session()->flash('success', 'Logout Berhasil!');
         Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
