@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('phone_number', 20)->unique();
             $table->string('password');
             $table->string('role')->default('user');
-            $table->integer('age')->nullable();
+            $table->integer('age', 2)->nullable();
             $table->string('description')->nullable();
             $table->string('hash_for_profile_picture')->nullable();
             $table->timestamps();
