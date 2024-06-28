@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class userController extends Controller
 {
@@ -73,6 +74,11 @@ class userController extends Controller
             $fileName = time() . '.' . $request->hash_for_profile_picture->getClientOriginalExtension();
             $request->hash_for_profile_picture->storeAs('profile_pictures', $fileName);
             $userToUpdate['hash_for_profile_picture'] = $fileName;
+
+            // Delete old pictures
+            if ($user->hash_for_profile_picture && Storage::disk('public')->exists("profile_pictures/" . $user->hash_for_profile_picture)) {
+                Storage::disk('public')->delete("profile_pictures/" . $user->hash_for_profile_picture);
+            }
         }     
 
         if ($request->has('password') && $request->has('password_confirmation')) {
