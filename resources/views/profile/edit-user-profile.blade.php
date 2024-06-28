@@ -7,9 +7,6 @@
         <p class="text-custom-grey text-lg font-league lg:text-xl">Perbarui informasi personal anda</p>
     </div>
 
-    {{-- Return Button --}}
-    <a href="/user-profile" class="absolute left-5 lg:left-10 top-5 lg:top-10 text-custom-green font-medium text-base lg:text-xl hover:underline">Batal</a>
-
     {{-- Forms --}}
     <form action="/user-profile/edit" method="post">
         @csrf
@@ -18,6 +15,14 @@
             <h2 class="text-xl lg:text-2xl/snug text-custom-dark font-encode font-semibold">Data Personal</h2>
         </div>
         <div class="flex flex-col mt-4 gap-5 lg:gap-7">
+            {{-- Input Profile Picture --}}
+            <div class="flex flex-col gap-2">
+                <label for="hash_for_profile_picture" class="font-semibold font-league text-xl text-custom-grey">Profile Picture (Optional)</label>
+                <input type="file" name="hash_for_profile_picture" id="hash_for_profile_picture" class="font-league font-medium text-lg/snug text-custom-secondary placeholder:#48484833">
+                @error('hash_for_profile_picture')
+                    <span class="text-custom-destructive">{{ $message }}</span>
+                @enderror
+            </div>
             {{-- Input Full Name --}}
             <div class="flex flex-col gap-1">
                 <label for="fullname" class="font-semibold font-league text-xl text-custom-grey">Nama Lengkap<span class="text-custom-destructive">*</span></label>
@@ -48,7 +53,7 @@
             </div>
             {{-- Input Description --}}
             <div class="flex flex-col gap-1">
-                <label for="description" class="font-semibold font-league text-xl text-custom-grey">Deskripsi</label>
+                <label for="description" class="font-semibold font-league text-xl text-custom-grey">Deskripsi (opsional)</label>
                 <textarea name="description" id="description" rows="5" placeholder="Buat personal anda menarik" class="px-4 py-3.5 h-36 font-league font-medium text-lg/snug text-custom-secondary placeholder:#48484833 resize-none rounded-lg @error('description') border-2 border-custom-destructive @enderror">{{ auth()->user()->description }}</textarea>
                 {{-- <input type="text" name="description" id="description" placeholder="Buat personal anda menarik" class="p-4 font-league font-medium text-lg/[0] text-custom-secondary placeholder:#48484833 rounded-lg @error('description') border-2 border-custom-destructive @enderror"> --}}
                 @error('description')

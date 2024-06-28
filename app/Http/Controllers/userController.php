@@ -66,9 +66,9 @@ class userController extends Controller
 
         if ($request->has('password') && $request->has('password_confirmation')) {
             $user->password = bcrypt($request->password);
-            $user->save();
         }
 
+        $user->save();
         $request->session()->flash('success', 'Profil berhasil diperbarui');
 
         return redirect()->intended('/user-profile');
