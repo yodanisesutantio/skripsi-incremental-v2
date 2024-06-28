@@ -35,7 +35,8 @@ class userController extends Controller
             'age' => 'nullable|numeric|min:17|max:99',
             'description' => 'nullable|max:255',
             'phone_number' => 'required|max:20',
-            'password' => 'nullable|min:5|max:255',
+            'password' => 'nullable|min:5|max:255|confirmed',
+            'password_confirmation' => 'nullable|min:5|max:255',
         ],[
             'fullname.required' => 'Kolom ini harus diisi',
             'fullname.max' => 'Nama Terlalu Panjang',
@@ -49,6 +50,9 @@ class userController extends Controller
             'phone_number.max' => 'Nomor Terlalu Panjang',
             'password.min' => 'Password minimal berisi 5 karakter',
             'password.max' => 'Password terlalu panjang',
+            'password.confirmed' => 'Pastikan anda mengetikkan password yang sama',
+            'password_confirmation.min' => 'Password minimal berisi 5 karakter',
+            'password_confirmation.max' => 'Password terlalu panjang',
         ]);
 
         $user = User::find(Auth::id());
@@ -60,7 +64,7 @@ class userController extends Controller
             'phone_number' => $request->phone_number,
         ]);
 
-        if ($request->has('password')) {
+        if ($request->has('password') && $request->has('password_confirmation')) {
             $user->password = bcrypt($request->password);
             $user->save();
         }
