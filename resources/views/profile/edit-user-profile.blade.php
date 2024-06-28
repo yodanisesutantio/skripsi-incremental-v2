@@ -8,7 +8,7 @@
     </div>
 
     {{-- Forms --}}
-    <form action="/user-profile/edit" method="post">
+    <form action="/user-profile/edit" method="post" enctype="multipart/form-data">
         @csrf
         {{-- Form Sub Headers --}}
         <div class="flex flex-col gap-1 mb-4">

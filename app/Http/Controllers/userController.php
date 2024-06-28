@@ -30,6 +30,7 @@ class userController extends Controller
 
     public function update(Request $request) {
         $this->validate($request, [
+            'hash_for_profile_picture' => 'nullable|mimes:jpeg,png,jpg,webp|max:2048',
             'fullname' => 'required|max:255',
             'username' => 'required|max:255|unique:users,username,' . Auth::id(),
             'age' => 'nullable|numeric|min:17|max:99',
@@ -38,6 +39,8 @@ class userController extends Controller
             'password' => 'nullable|min:5|max:255|confirmed',
             'password_confirmation' => 'nullable|min:5|max:255',
         ],[
+            'hash_for_profile_picture.mimes' => 'Format yang didukung adalah .jpg, .png, dan .webp',
+            'hash_for_profile_picture.max' => 'Ukuran gambar maksimal adalah 2 MB',
             'fullname.required' => 'Kolom ini harus diisi',
             'fullname.max' => 'Nama Terlalu Panjang',
             'username.required' => 'Kolom ini harus diisi',
@@ -56,19 +59,27 @@ class userController extends Controller
         ]);
 
         $user = User::find(Auth::id());
-        $user->update([
+
+        $userToUpdate = [
             'fullname' => $request->fullname,
             'username' => $request->username,
             'age' => $request->age,
             'description' => $request->description,
             'phone_number' => $request->phone_number,
-        ]);
+        ];   
+
+        $fileName = null;
+        if ($request->hasFile('hash_for_profile_picture')) {
+            $fileName = time() . '.' . $request->hash_for_profile_picture->getClientOriginalExtension();
+            $request->hash_for_profile_picture->storeAs('profile_pictures', $fileName);
+            $userToUpdate['hash_for_profile_picture'] = $fileName;
+        }     
 
         if ($request->has('password') && $request->has('password_confirmation')) {
             $user->password = bcrypt($request->password);
         }
 
-        $user->save();
+        $user->update($userToUpdate);
         $request->session()->flash('success', 'Profil berhasil diperbarui');
 
         return redirect()->intended('/user-profile');
