@@ -8,7 +8,7 @@
     </div>
 
     {{-- Forms --}}
-    <form action="#" method="post">
+    <form action="/user-profile/edit" method="post">
         @csrf
         {{-- Form Sub Headers --}}
         <div class="flex flex-col gap-1 mb-4">
@@ -68,7 +68,7 @@
 
             {{-- Input Password --}}
             <div class="flex flex-col gap-1">
-                <label for="password" class="font-semibold font-league text-xl text-custom-grey">Ubah Password<span class="text-custom-destructive">*</span></label>
+                <label for="password" class="font-semibold font-league text-xl text-custom-grey">Ubah Password</label>
                 <div class="relative flex justify-end items-center">
                     <input type="password" name="password" id="password" placeholder="Password" class="relative py-4 pl-4 pr-10 w-full font-league font-medium text-lg/[0] text-custom-secondary placeholder:#48484833 rounded-lg @error('password') border-2 border-custom-destructive @enderror">
                     <div class="eyeIcon absolute mr-3" onclick="showHidePass()">

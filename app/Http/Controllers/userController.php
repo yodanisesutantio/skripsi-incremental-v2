@@ -28,27 +28,52 @@ class userController extends Controller
         ]);
     }
 
-    public function update(Request $request, User $user) {
-        $rules = [
-            'fullname' => ['required', 'max:255'],
-            'username' => ['required', 'min:3', 'max:255', 'unique:users'],
-            'age' => ['min:2', 'max:2'],
-            'description' => ['max:255'],
-            'phone_number' => ['required', 'min:10', 'max:20', 'unique:users'],
-            'password' => ['required', 'min:5', 'max:255']
-        ];
+    public function update(Request $request) {
+        $this->validate($request, [
+            'fullname' => 'required|max:255',
+            'username' => 'required|max:255|unique:users,username,' . Auth::id(),
+            'age' => 'nullable|numeric|min:17|max:99',
+            'description' => 'nullable|max:255',
+            'phone_number' => 'required|max:20',
+            'password' => 'nullable|min:5|max:255',
+        ],[
+            'fullname.required' => 'Kolom ini harus diisi',
+            'fullname.max' => 'Nama Terlalu Panjang',
+            'username.required' => 'Kolom ini harus diisi',
+            'username.max' => 'Username Terlalu Panjang',
+            'username.unique' => 'Username sudah digunakan',
+            'age.min' => 'Usia minimal 17 tahun',
+            'age.max' => 'Usia maksimal 99 tahun',
+            'description.max' => 'Deskripsi terlalu panjang',
+            'phone_number.required' => 'Kolom ini harus diisi',
+            'phone_number.max' => 'Nomor Terlalu Panjang',
+            'password.min' => 'Password minimal berisi 5 karakter',
+            'password.max' => 'Password terlalu panjang',
+        ]);
 
-        if($request->username != $user->username) {
-            $rules['username'] = 'required|min:3|max:255:unique:users';
+        $user = User::find(Auth::id());
+        $user->update([
+            'fullname' => $request->fullname,
+            'username' => $request->username,
+            'age' => $request->age,
+            'description' => $request->description,
+            'phone_number' => $request->phone_number,
+        ]);
+
+        if ($request->has('password')) {
+            $user->password = bcrypt($request->password);
+            $user->save();
         }
 
-        $validatedData = $request->validate($rules);
+        $request->session()->flash('success', 'Profil berhasil diperbarui');
+
+        return redirect()->intended('/user-profile');
     }
 
     public function destroy(Request $request)
     {
         $user = Auth::user();
-        $request->session()->flash('success', 'Login Berhasil');
+        // $request->session()->flash('success', 'Login Berhasil');
 
         Auth::logout();
 
