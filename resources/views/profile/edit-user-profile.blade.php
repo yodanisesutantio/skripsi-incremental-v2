@@ -17,7 +17,7 @@
         <div class="flex flex-col mt-4 gap-5 lg:gap-7">
             {{-- Input Profile Picture --}}
             <div class="flex flex-col gap-2">
-                <label for="hash_for_profile_picture" class="font-semibold font-league text-xl text-custom-grey">Profile Picture (Optional)</label>
+                <label for="hash_for_profile_picture" class="font-semibold font-league text-xl text-custom-grey">Gambar Profil (Optional)</label>
                 <input type="file" name="hash_for_profile_picture" id="hash_for_profile_picture" class="font-league font-medium text-lg/snug text-custom-secondary placeholder:#48484833">
                 @error('hash_for_profile_picture')
                     <span class="text-custom-destructive">{{ $message }}</span>
@@ -55,7 +55,6 @@
             <div class="flex flex-col gap-1">
                 <label for="description" class="font-semibold font-league text-xl text-custom-grey">Deskripsi (opsional)</label>
                 <textarea name="description" id="description" rows="5" placeholder="Buat personal anda menarik" class="px-4 py-3.5 h-36 font-league font-medium text-lg/snug text-custom-secondary placeholder:#48484833 resize-none rounded-lg @error('description') border-2 border-custom-destructive @enderror">{{ auth()->user()->description }}</textarea>
-                {{-- <input type="text" name="description" id="description" placeholder="Buat personal anda menarik" class="p-4 font-league font-medium text-lg/[0] text-custom-secondary placeholder:#48484833 rounded-lg @error('description') border-2 border-custom-destructive @enderror"> --}}
                 @error('description')
                     <span class="text-custom-destructive">{{ $message }}</span>
                 @enderror
@@ -107,8 +106,10 @@
             </div>
         </div>
     
-        <div class="flex mb-5 mt-8">
-            <button name="submit" type="submit" class="w-full py-3 rounded-lg lg:rounded-lg bg-custom-green hover:bg-custom-green-hover text-center lg:text-lg text-custom-white-hover font-semibold lg:order-2 duration-500">Simpan</button>
+        {{-- Button Groups --}}
+        <div class="flex flex-row sticky z-20 bottom-0 py-4 items-center justify-between bg-custom-white mt-3">
+            <a href="/user-profile" class="text-custom-dark font-league font-medium px-1 pt-2 pb-1 text-lg/none underline hover:text-custom-green-hover cancelLink">Batal</a>
+            <button type="submit" class="px-12 py-3 rounded-lg lg:rounded-lg bg-custom-green hover:bg-custom-green-hover text-center lg:text-lg text-custom-white-hover font-semibold lg:order-2 duration-500">Simpan</button>
         </div>
     </form>
 
