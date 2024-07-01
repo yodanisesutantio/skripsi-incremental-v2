@@ -60,32 +60,27 @@ class userController extends Controller
         ]);
 
         $user = User::find(Auth::id());
-
-        $userToUpdate = [
-            'fullname' => $request->fullname,
-            'username' => $request->username,
-            'age' => $request->age,
-            'description' => $request->description,
-            'phone_number' => $request->phone_number,
-        ];   
+        $user->update($request->only(['fullname', 'username', 'age', 'description', 'phone_number']));
 
         $fileName = null;
         if ($request->hasFile('hash_for_profile_picture')) {
-            $fileName = time() . '.' . $request->hash_for_profile_picture->getClientOriginalExtension();
-            $request->hash_for_profile_picture->storeAs('profile_pictures', $fileName);
-            $userToUpdate['hash_for_profile_picture'] = $fileName;
-
             // Delete old pictures
             if ($user->hash_for_profile_picture && Storage::disk('public')->exists("profile_pictures/" . $user->hash_for_profile_picture)) {
                 Storage::disk('public')->delete("profile_pictures/" . $user->hash_for_profile_picture);
             }
+
+            $fileName = time() . '.' . $request->hash_for_profile_picture->getClientOriginalExtension();
+            $request->hash_for_profile_picture->storeAs('profile_pictures', $fileName);
+
+            $user->fill(['hash_for_profile_picture' => $fileName]);
+            $user->save();            
         }     
 
-        if ($request->has('password') && $request->has('password_confirmation')) {
+        if ($request->has('password') && $request->has('password_confirmation') && !empty($request->password)) {
             $user->password = bcrypt($request->password);
+            $user->save();
         }
 
-        $user->update($userToUpdate);
         $request->session()->flash('success', 'Profil berhasil diperbarui');
 
         return redirect()->intended('/user-profile');

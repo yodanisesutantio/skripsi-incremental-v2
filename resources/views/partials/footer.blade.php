@@ -35,7 +35,9 @@
                                 </a>
                             @endif
                         @else
-                            <li class="p-3 text-custom-green font-bold lg:text-xl hover:bg-custom-dark/10 cursor-pointer nav-item"><a href="tamu">Beranda</a></li>
+                            <a href="tamu" class="border-t border-l border-custom-dark/40 p-8 cursor-pointer hover:bg-custom-green hover:text-custom-white duration-300">
+                                <p class="font-league font-medium text-2xl">Beranda</p>
+                            </a>
                         @endauth
     
                         <a href="course-list" class="border-t border-l border-custom-dark/40 p-8 cursor-pointer hover:bg-custom-green hover:text-custom-white duration-300">
