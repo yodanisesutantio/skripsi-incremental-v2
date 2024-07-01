@@ -171,10 +171,5 @@
                 $(this).val($(this).val().replace(/\s/g, "")); // Remove spaces on input
             }
         });
-
-        $('#deleteProfileButton').addEventListener('click', function(event) {
-            event.preventDefault();
-            this.form.submit();
-        })
     </script>
 @endsection

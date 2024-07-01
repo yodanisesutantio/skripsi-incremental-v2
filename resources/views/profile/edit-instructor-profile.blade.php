@@ -111,7 +111,7 @@
     
         {{-- Button Groups --}}
         <div class="flex flex-row sticky z-20 bottom-0 py-4 items-center justify-between bg-custom-white mt-3">
-            <a href="/user-profile" class="text-custom-dark font-league font-medium px-1 pt-2 pb-1 text-lg/none underline hover:text-custom-green-hover cancelLink">Batal</a>
+            <a href="/instructor-profile" class="text-custom-dark font-league font-medium px-1 pt-2 pb-1 text-lg/none underline hover:text-custom-green-hover cancelLink">Batal</a>
             <button type="submit" class="px-12 py-3 rounded-lg lg:rounded-lg bg-custom-green hover:bg-custom-green-hover text-center lg:text-lg text-custom-white-hover font-semibold lg:order-2 duration-500">Simpan</button>
         </div>
     </form>
@@ -171,10 +171,5 @@
                 $(this).val($(this).val().replace(/\s/g, "")); // Remove spaces on input
             }
         });
-
-        $('#deleteProfileButton').addEventListener('click', function(event) {
-            event.preventDefault();
-            this.form.submit();
-        })
     </script>
 @endsection
