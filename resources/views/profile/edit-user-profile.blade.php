@@ -18,6 +18,9 @@
             {{-- Input Profile Picture --}}
             <div class="flex flex-col gap-2">
                 <label for="hash_for_profile_picture" class="font-semibold font-league text-xl text-custom-grey">Gambar Profil (Optional)</label>
+                @if (auth()->user()->hash_for_profile_picture)
+                    <img src="{{ asset('storage/profile_pictures/' . auth()->user()->hash_for_profile_picture) }}" alt="profile-picture" class="w-20 lg:w-32 h-20 lg:h-32 mb-2 rounded-full">
+                @endif
                 <input type="file" name="hash_for_profile_picture" id="hash_for_profile_picture" class="font-league font-medium text-lg/snug text-custom-secondary placeholder:#48484833">
                 @error('hash_for_profile_picture')
                     <span class="text-custom-destructive">{{ $message }}</span>
@@ -168,5 +171,10 @@
                 $(this).val($(this).val().replace(/\s/g, "")); // Remove spaces on input
             }
         });
+
+        $('#deleteProfileButton').addEventListener('click', function(event) {
+            event.preventDefault();
+            this.form.submit();
+        })
     </script>
 @endsection

@@ -37,6 +37,7 @@ Route::middleware(['auth', 'App\Http\Middleware\userMiddleware'])->group(functio
     Route::get('/user-profile', [userController::class, 'profile']);
     Route::get('/user-profile/edit', [userController::class, 'editProfile']);
     Route::post('/user-profile/edit', [userController::class, 'update']);
+    // Route::delete('/user/profile/picture', [userController::class, 'deleteProfilePicture'])->name('deleteProfilePicture');
     Route::delete('/delete-account', [userController::class, 'destroy'])->name('account.destroy');
 });
 

@@ -91,6 +91,21 @@ class userController extends Controller
         return redirect()->intended('/user-profile');
     }
 
+    // public function deleteProfilePicture(Request $request)
+    // {
+    //     $user = User::find(Auth:id());
+
+    //     if ($user->hash_for_profile_picture) {
+    //         Storage::disk('public')->delete("profile_pictures/" . $user->hash_for_profile_picture);
+    //         $user->hash_for_profile_picture = null;
+    //         $user->save();
+
+    //         $request->session()->flash('success', 'Gambar Profil berhasil dihapus');
+    //     }
+
+    //     return redirect()->intended('/user-profile');
+    // }
+
     public function destroy(Request $request)
     {
         $user = Auth::user();
