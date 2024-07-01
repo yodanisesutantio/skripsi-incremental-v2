@@ -43,6 +43,8 @@ Route::middleware(['auth', 'App\Http\Middleware\userMiddleware'])->group(functio
 
 Route::middleware(['auth', 'App\Http\Middleware\instructorMiddleware'])->group(function () {
     Route::get('/instructor-index', [instructorController::class, 'index']);
+    Route::get('/instructor-profile', [instructorController::class, 'profile']);
+    Route::get('/instructor-profile/edit', [instructorController::class, 'editProfile']);
 });
 
 Route::middleware(['auth', 'App\Http\Middleware\adminMiddleware'])->group(function () {

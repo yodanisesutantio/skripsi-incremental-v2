@@ -13,4 +13,16 @@ class instructorController extends Controller
             "pageName" => "Beranda | ",
         ]);
     }
+
+    public function profile() {
+        return view('profile.instructor-profile', [
+            "pageName" => "Profil Anda | ",
+        ]);
+    }
+
+    public function editProfile() {
+        return view('profile.edit-instructor-profile', [
+            "pageName" => "Ubah Profil Anda | ",
+        ]);
+    }
 }
