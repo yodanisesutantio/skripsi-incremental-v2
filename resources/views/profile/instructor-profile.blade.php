@@ -7,7 +7,7 @@
     <div class="flex flex-col items-center w-full">
         <div class="profile-header flex flex-col lg:flex-row gap-3 lg:gap-10 w-full items-center lg:justify-center">
             @if (auth()->user()->hash_for_profile_picture)
-                <img src="{{ asset('storage/profile_pictures/' . auth()->user()->hash_for_profile_picture) }}" alt="profile-picture" class="w-20 lg:w-32 h-20 lg:h-32 rounded-full">
+                <img src="{{ asset('storage/profile_pictures/' . auth()->user()->hash_for_profile_picture) }}" alt="profile-picture" class="w-20 lg:w-32 h-20 lg:h-32 object-cover rounded-full">
             @else
                 <img src="img/blank-profile.webp" alt="profile-picture" class="w-20 lg:w-32 h-20 lg:h-32 rounded-full">
             @endif
@@ -44,7 +44,7 @@
                 </div>
             </a>
             {{-- List of Students --}}
-            <a href="" class="bg-cover bg-center rounded-xl lg:cursor-pointer" style="background-image: url('img/add-driving-school.webp')">
+            <a href="instructor/student-list" class="bg-cover bg-center rounded-xl lg:cursor-pointer" style="background-image: url('img/add-driving-school.webp')">
                 <div class="flex flex-col gap-1 justify-end p-[10px] bg-gradient-to-t from-custom-dark/80 from-15% to-custom-dark/10 to-70% font-league w-full h-full rounded-xl lg:hover:bg-custom-dark-low lg:hover:transition-colors lg:duration-500">
                     <h2 class="text-lg/tight lg:text-2xl/[1.5rem] font-semibold">Daftar Siswa</h2>
                     <p class="text-sm/none lg:text-base/[1.35rem] text-custom-white font-light">Periksa progress siswa anda</p>

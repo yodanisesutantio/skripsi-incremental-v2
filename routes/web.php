@@ -45,6 +45,7 @@ Route::middleware(['auth', 'App\Http\Middleware\instructorMiddleware'])->group(f
     Route::get('/instructor-index', [instructorController::class, 'index']);
     Route::get('/instructor-profile', [instructorController::class, 'profile']);
     Route::get('/instructor-profile/edit', [instructorController::class, 'editProfile']);
+    Route::post('/instructor-profile/edit', [instructorController::class, 'update']);
 });
 
 Route::middleware(['auth', 'App\Http\Middleware\adminMiddleware'])->group(function () {
