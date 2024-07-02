@@ -82,7 +82,7 @@
         </div>
     </div>
 
-    {{-- Darken Overlay --}}
+    {{-- Delete Overlay --}}
     <div id="delete-overlay" class="fixed hidden z-40 flex items-center justify-center top-0 left-0 w-full h-full bg-custom-dark/70">
         {{-- Delete Confirmation --}}
         <div id="deleteConfirm" class="relative w-80 lg:w-[28rem] bottom-0 py-4 z-40 bg-custom-white rounded-xl">
@@ -91,15 +91,37 @@
                 <button type="button" id="XDelete"><svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 256 256"><path fill="#040B0D" d="M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z"/></svg></button>
             </div>
             <div class="px-5 mt-2">
-                <p class="font-league text-lg/snug lg:text-xl/tight text-custom-dark mb-1 lg:mb-12">Apa anda yakin ingin menghapus akun anda beserta semua data yang terkait didalamnya?</p>
+                <p class="font-league text-lg/snug lg:text-xl/tight text-custom-dark mb-1 lg:mb-12">Anda yakin ingin menghapus lembaga kursus anda beserta semua data yang terkait didalamnya?</p>
             </div>
             <div class="flex flex-row justify-end gap-4 px-5 mt-4">                
-                <button type="button" id="closeDelete" class="w-fit rounded text-left p-3 text-custom-dark font-semibold hover:bg-custom-dark-hover/20">Batal</button>
+                <button type="button" id="openDeactivate" class="w-fit rounded text-left p-3 text-custom-dark font-semibold hover:bg-custom-dark-hover/20">Tidak, Nonaktifkan Sementara</button>
                 <button type="submit" id="yesDelete" class="w-fit rounded text-left p-3 bg-custom-destructive hover:bg-[#EC2013] text-custom-white font-semibold">Ya, Hapus Akun</button>
-                <form action="{{ route('account.destroy') }}" method="post" class="mb-1 hidden">
+                <form action="{{ route('admin.account.destroy') }}" method="post" class="mb-1 hidden">
                     @method('delete')
                     @csrf
                 </form>
+            </div>
+        </div>
+    </div>
+
+    {{-- Deactivate Overlay --}}
+    <div id="deactivateOverlay" class="fixed hidden z-40 flex items-center justify-center top-0 left-0 w-full h-full bg-custom-dark/70">
+        {{-- Deactivate Confirmation --}}
+        <div id="deactivateConfirm" class="relative w-80 lg:w-[28rem] bottom-0 py-4 z-50 bg-custom-white rounded-xl">
+            <div class="flex flex-row sticky px-5 bg-custom-white justify-between items-center pt-1 pb-4">
+                <h2 class="font-league text-[27px]/none pt-1 lg:text-3xl font-semibold text-custom-dark ">Nonaktifkan Sementara?</h2>
+                <button type="button" id="XDeactivate"><svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 256 256"><path fill="#040B0D" d="M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z"/></svg></button>
+            </div>
+            <div class="px-5 mt-2">
+                <p class="font-league text-lg/snug lg:text-xl/tight text-custom-dark mb-1 lg:mb-12">Anda yakin ingin menonaktifkan sementara lembaga kursus anda?</p>
+            </div>
+            <div class="flex flex-row justify-end gap-4 px-5 mt-4">                
+                <button type="button" id="closeDeactivate" class="w-fit rounded text-left p-3 text-custom-dark font-semibold hover:bg-custom-dark-hover/20">Batal</button>
+                <button type="submit" id="yesDeactivate" class="w-fit rounded text-left p-3 bg-custom-destructive hover:bg-[#EC2013] text-custom-white font-semibold">Ya, Nonaktifkan</button>
+                {{-- <form action="{{ route('account.destroy') }}" method="post" class="mb-1 hidden">
+                    @method('delete')
+                    @csrf
+                </form> --}}
             </div>
         </div>
     </div>
@@ -111,8 +133,11 @@
     {{-- jQuery CDN --}}
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
-        const closeDeletePopup = $('#XDelete, #closeDelete');
+        const closeDeletePopup = $('#XDelete');
         const deleteOverlay = $('#delete-overlay');
+        const openDeactivatePopup = $('#openDeactivate');
+        const closeDeactivatePopup = $('#XDeactivate, #closeDeactivate');
+        const deactivateOverlay = $('#deactivateOverlay');
 
         function deleteConfirmation() {
             deleteOverlay.toggleClass('hidden');
@@ -121,10 +146,29 @@
                 $('#yesDelete').next().submit();
             });
         }
+
+        // function deactivateConfirmation() {
+        //     deactivateOverlay.toggleClass('hidden');
+        //     $('#yesDeactivate').click(function(event) {
+        //         event.preventDefault();
+        //         $('#yesDeactivate').next().submit();
+        //     });
+        // }
+
+        function toggleDeactivateOverlay() {
+            openDeactivatePopup.toggleClass('hidden');
+        }
         
+        function toggleDeactivateConfirmation() {
+            deactivateOverlay.toggleClass('hidden');
+        }
+
         function toggleDeleteConfirmation() {
             deleteOverlay.toggleClass('hidden');
         }
         closeDeletePopup.click(toggleDeleteConfirmation);
+        openDeactivatePopup.click(toggleDeactivateConfirmation);
+        openDeactivatePopup.click(toggleDeleteConfirmation);
+        closeDeactivatePopup.click(toggleDeactivateConfirmation);
     </script>
 @endsection

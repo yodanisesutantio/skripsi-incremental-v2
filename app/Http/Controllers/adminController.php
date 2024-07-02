@@ -82,4 +82,16 @@ class adminController extends Controller
 
         return redirect()->intended('/admin-profile');
     }
+
+    public function destroy(Request $request)
+    {
+        $user = Auth::user();
+        // $request->session()->flash('success', 'Login Berhasil');
+
+        Auth::logout();
+
+        $user->delete();
+
+        return redirect('/');
+    }
 }

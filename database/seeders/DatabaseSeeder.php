@@ -48,5 +48,13 @@ class DatabaseSeeder extends Seeder
             'role' => "admin",
             'description' => 'House of Surabaya Driving School'
         ]);
+        User::create([
+            'fullname' => 'Kursus Mengemudi Magetan',
+            'username' => 'kursus_magetan',
+            'phone_number' => '+628310231231',
+            'password' => bcrypt('magetan'),
+            'role' => "admin",
+            'description' => 'House of Magetan Driving School'
+        ]);
     }
 }

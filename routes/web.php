@@ -38,7 +38,7 @@ Route::middleware(['auth', 'App\Http\Middleware\userMiddleware'])->group(functio
     Route::get('/user-profile/edit', [userController::class, 'editProfile']);
     Route::post('/user-profile/edit', [userController::class, 'update']);
     // Route::delete('/user/profile/picture', [userController::class, 'deleteProfilePicture'])->name('deleteProfilePicture');
-    Route::delete('/delete-account', [userController::class, 'destroy'])->name('account.destroy');
+    Route::delete('/user-delete-account', [userController::class, 'destroy'])->name('user.account.destroy');
 });
 
 Route::middleware(['auth', 'App\Http\Middleware\instructorMiddleware'])->group(function () {
@@ -53,6 +53,7 @@ Route::middleware(['auth', 'App\Http\Middleware\adminMiddleware'])->group(functi
     Route::get('/admin-profile', [adminController::class, 'profile']);
     Route::get('/admin-profile/edit', [adminController::class, 'editProfile']);
     Route::post('/admin-profile/edit', [adminController::class, 'update']);
+    Route::delete('/admin-delete-account', [adminController::class, 'destroy'])->name('admin.account.destroy');
 });
 
 Route::get('/tamu', [homeController::class, 'tamu']);
