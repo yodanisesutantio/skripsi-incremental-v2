@@ -50,6 +50,9 @@ Route::middleware(['auth', 'App\Http\Middleware\instructorMiddleware'])->group(f
 
 Route::middleware(['auth', 'App\Http\Middleware\adminMiddleware'])->group(function () {
     Route::get('/admin-index', [adminController::class, 'index']);
+    Route::get('/admin-profile', [adminController::class, 'profile']);
+    Route::get('/admin-profile/edit', [adminController::class, 'editProfile']);
+    Route::post('/admin-profile/edit', [adminController::class, 'update']);
 });
 
 Route::get('/tamu', [homeController::class, 'tamu']);
