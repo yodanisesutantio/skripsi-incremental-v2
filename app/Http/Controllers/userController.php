@@ -17,6 +17,12 @@ class userController extends Controller
         ]);
     }
 
+    public function addDrivingSchool() {    
+        return view('add-driving-school', [
+            "pageName" => "Tawarkan Jasa Anda | ",
+        ]);
+    }
+
     public function profile() {
         return view('profile.user-profile', [
             "pageName" => "Profil Anda | ",

@@ -56,7 +56,7 @@ Route::middleware(['auth', 'App\Http\Middleware\userMiddleware'])->group(functio
     Route::delete('/user-delete-account', [userController::class, 'destroy'])->name('user.account.destroy');
 
     // Add Driving School Page
-    Route::get('/add-driving-school', [userController::class, 'editProfile']);
+    Route::get('/add-driving-school', [userController::class, 'addDrivingSchool']);
 });
 
 // Instructor Specific Route
