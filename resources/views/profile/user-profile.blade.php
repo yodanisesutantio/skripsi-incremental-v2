@@ -58,7 +58,7 @@
                 </div>
             </a>
             {{-- Add Driving School --}}
-            <a href="user-profile/edit" class="row-span-2 bg-cover bg-center rounded-xl lg:cursor-pointer" style="background-image: url('img/add-driving-school.webp')">
+            <a href="add-driving-school" class="row-span-2 bg-cover bg-center rounded-xl lg:cursor-pointer" style="background-image: url('img/add-driving-school.webp')">
                 <div class="flex flex-col gap-1 justify-end p-[10px] bg-gradient-to-t from-custom-dark/80 from-15% to-custom-dark/10 to-70% font-league w-full h-full rounded-xl lg:hover:bg-custom-dark-low lg:hover:transition-colors lg:duration-500">
                     <h2 class="text-lg/tight lg:text-2xl/[2rem] font-semibold">Ingin jadi instruktur?</h2>
                     <p class="text-sm/none lg:text-base/[1.35rem] text-custom-white font-light">Daftarkan tempat kursus mengemudimu</p>
