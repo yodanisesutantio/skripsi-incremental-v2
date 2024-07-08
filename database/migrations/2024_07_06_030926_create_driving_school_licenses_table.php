@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('driving_school_licenses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->unique();
+            $table->unsignedBigInteger('user_id');
             $table->string('license_file_path')->nullable();
             $table->date('end_License_Date')->nullable();
             $table->string('status')->default('pending');

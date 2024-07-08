@@ -9,6 +9,7 @@ use App\Http\Controllers\homeController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\instructorController;
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\sysAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +72,7 @@ Route::middleware(['auth', 'App\Http\Middleware\instructorMiddleware'])->group(f
     Route::post('/instructor-profile/edit', [instructorController::class, 'update']);
 });
 
+// Admin Specific Route
 Route::middleware(['auth', 'App\Http\Middleware\adminMiddleware'])->group(function () {
     // Admin Dashboard Page
     Route::get('/admin-index', [adminController::class, 'index']);
@@ -82,6 +84,12 @@ Route::middleware(['auth', 'App\Http\Middleware\adminMiddleware'])->group(functi
     Route::post('/admin-profile/edit', [adminController::class, 'update']);
     // Admin Delete Account Logic Handler
     Route::delete('/admin-delete-account', [adminController::class, 'destroy'])->name('admin.account.destroy');
+});
+
+// System Admin Specific Route
+Route::middleware(['auth', 'App\Http\Middleware\sysAdminMiddleware'])->group(function () {
+    // System Admin Dashboard Page
+    Route::get('/sysAdmin-index', [sysAdminController::class, 'index']);
 });
 
 // Guest Dashboard Page

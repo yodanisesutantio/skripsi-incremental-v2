@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             'username' => 'master_kemudi',
             'phone_number' => '999999999999',
             'password' => bcrypt('12345'),
-            'role' => "sys_admin"
+            'role' => "sysAdmin"
         ]);
         User::create([
             'fullname' => 'General User',
