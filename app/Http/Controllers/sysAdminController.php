@@ -11,9 +11,11 @@ class sysAdminController extends Controller
 {
     public function index() {
         $view = 'home.kemudi';
+        $users = User::all();
     
         return view($view, [
             "pageName" => "Dashboard Sistem | ",
+            "users" => $users
         ]);
     }
 }
