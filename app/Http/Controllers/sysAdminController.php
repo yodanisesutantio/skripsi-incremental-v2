@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class sysAdminController extends Controller
 {
     public function index() {
-        $view = 'home.kemudi';
+        $view = 'home.systemDashboard';
         $users = User::all();
     
         return view($view, [

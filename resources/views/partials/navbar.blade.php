@@ -35,7 +35,7 @@
                                 <li class="p-3 text-custom-green font-bold lg:text-xl hover:bg-custom-dark/10 cursor-pointer nav-item"><a href="admin-profile">Profil</a></li>
                             @endif
                         @else
-                            <li class="p-3 text-custom-green font-bold lg:text-xl hover:bg-custom-dark/10 cursor-pointer nav-item"><a href="/login">Beranda</a></li>
+                            
                         @endauth
 
                         {{-- Garis Pemisah --}}
